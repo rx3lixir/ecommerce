@@ -18,6 +18,11 @@ export function MainNav({
       label: "Settings",
       active: pathName === `/${params.storeId}/settings`,
     },
+    {
+      href: `/${params.storeId}`,
+      label: "Overview",
+      active: pathName === `/${params.storeId}`,
+    },
   ];
 
   return (
