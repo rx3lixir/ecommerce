@@ -1,4 +1,5 @@
 "use client";
+
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
@@ -19,12 +20,13 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "./ui/form";
-import { Input } from "./ui/input";
+} from "../../../../../../components/ui/form";
+import { Input } from "../../../../../../components/ui/input";
 import toast from "react-hot-toast";
 import { useParams, useRouter } from "next/navigation";
 import { AlertModal } from "@/components/modal/alert-modal";
-import { ApiAlert } from "./api-alert";
+import { ApiAlert } from "../../../../../../components/api-alert";
+import { useOrigin } from "@/hooks/use-origin";
 interface SettingsFormProps {
   initialData: Store;
 }
@@ -41,6 +43,7 @@ export const SettingsForm: React.FC<SettingsFormProps> = ({ initialData }) => {
 
   const params = useParams();
   const router = useRouter();
+  const origin = useOrigin();
 
   const form = useForm<SettingsFormValues>({
     resolver: zodResolver(formScema),
@@ -65,9 +68,12 @@ export const SettingsForm: React.FC<SettingsFormProps> = ({ initialData }) => {
   const onDelete = async () => {
     try {
       setLoading(true);
+
       await axios.delete(`/api/stores/${params.storeId}`);
+
       router.refresh();
       router.push("/");
+
       toast.success("Store deleted");
     } catch (error) {
       toast.error("Make sure you moved all products and categories");
