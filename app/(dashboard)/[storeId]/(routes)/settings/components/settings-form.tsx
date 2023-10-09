@@ -20,12 +20,12 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "../../../../../../components/ui/form";
-import { Input } from "../../../../../../components/ui/input";
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
 import toast from "react-hot-toast";
 import { useParams, useRouter } from "next/navigation";
 import { AlertModal } from "@/components/modal/alert-modal";
-import { ApiAlert } from "../../../../../../components/api-alert";
+import { ApiAlert } from "@/components/api-alert";
 import { useOrigin } from "@/hooks/use-origin";
 interface SettingsFormProps {
   initialData: Store;
